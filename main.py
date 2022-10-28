@@ -1,12 +1,20 @@
-import random
-from typing import Any
+from flask import Flask, render_template, request
 
 
-def getword():
-    word_list = ['air', 'apple', 'baby', 'birth', 'cheese', 'connection', 'distribution', 'electric', 'exchange',
-                 'feather', 'flower', 'grain', 'gun', 'hanging', 'harbour', 'insurance', 'island', 'journey', 'kettle',
-                 'learning', 'liquid', 'material']
+app = Flask(__name__)
 
-    word_index = random.choice(word_list)
-    return word_index
+@app.route('/')
+def index():
+    return render_template('hangman.html')
 
+app.route('/', methods=['POST'])
+
+def get_guess():
+    guess = request.form['User-input']
+    print(guess)
+
+if __name__ == "__main__":
+    app.run(host="192.168.1.76")
+
+
+get_guess()
